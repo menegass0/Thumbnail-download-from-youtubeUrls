@@ -16,6 +16,7 @@
             <span class="title">Paste video url:</span>
             <div class="field">
                 <input type="text" placeholder="https://www.youtube.com/watch?v=2oc4KeGOjn4" required>
+                <input type="hidden" class="hidden-input">
                 <div class="bottom-line"></div>
             </div>
         </div>
@@ -30,11 +31,11 @@
         const urlField = document.querySelector(".field input");
         previewArea = document.querySelector(".preview-area");
         imgTag =  previewArea.querySelector(".thumbnail");
-
+        
         urlField.onkeyup = ()=>{
             let imgUrl = urlField.value;
             previewArea.classList.add("active");
-
+            hiddenInput =document.querySelector(".hidden-input");
             if(imgUrl.indexOf("https://www.youtube.com/watch?v=") != -1){
                 let vidId = imgUrl.split("v=")[1].substring(0,11);
                 let ytThumbUrl = `https://img.youtube.com/vi/${vidId}/maxresdefault.jpg`;
@@ -53,6 +54,7 @@
                 previewArea.classList.remove("active");
                 
             }
+            hiddenInput.value = imgTag.src;
         }
     </script>
 </body>
